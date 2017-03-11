@@ -1,0 +1,7 @@
+ name: Battle-Royal
+ version: 1.3.3.7
+ description: Battle-Royal
+ authors: [Relic] 
+ 
+ main: net.relic.battleroyal.battleroyal
+ 
