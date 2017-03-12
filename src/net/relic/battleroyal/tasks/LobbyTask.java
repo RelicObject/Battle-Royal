@@ -7,6 +7,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import net.relic.battleroyal.API;
 import net.relic.battleroyal.battleroyal;
+import net.relic.battleroyal.player.PlayerData;
 import net.relic.battleroyal.utils.Timer;
 
 /**
@@ -52,7 +53,8 @@ public class LobbyTask extends BukkitRunnable{
 				api.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&fWaiting for &6" + (minplayers - api.getServer().getOnlinePlayers().size()) + "&f more players."));
 
 				for(Player p : api.getServer().getOnlinePlayers()){
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&fWaiting for &6" + (minplayers - api.getServer().getOnlinePlayers().size()) + "&f more players."));
+					PlayerData pd = api.getPlayerHandler().getPlayerData(p.getUniqueId());
+					pd.sendMessage("Royal", "Waiting for &6" + (minplayers - api.getServer().getOnlinePlayers().size()) + "&7 more players.");
 				}
 			}
 		}

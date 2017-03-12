@@ -30,7 +30,16 @@ public class PlayerData {
 	
 	public void sendMessage(String tag, String message){
 		this.api.getServer().getPlayer(uuid).sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&c" + tag + "&8] &7" + message));
-		
+	}
+	
+	public void clearChat(boolean silent){
+		for(int i = 0; i < 25; i++){
+			this.api.getServer().getPlayer(uuid).sendMessage("");
+		}
+		if(!silent){
+			this.sendMessage("Royal", "You chat has been cleared.");
+
+		}
 	}
 	
 	public boolean isInGame(){

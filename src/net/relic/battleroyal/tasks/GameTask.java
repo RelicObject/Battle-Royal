@@ -7,6 +7,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import net.relic.battleroyal.API;
+import net.relic.battleroyal.arena.Arena;
 import net.relic.battleroyal.player.PlayerData;
 import net.relic.battleroyal.utils.Timer;
 
@@ -23,15 +24,24 @@ public class GameTask extends BukkitRunnable{
 	// GAME TIMERS //
 	private Timer gameTimer;
 	private Timer combatTimer;
-	
+	private Timer borderTimer;
+
 	private boolean combatReached = false;
+	
+	
+	private Arena arena;
 	
 	public GameTask(API api){
 		this.api = api;
+		this.arena = api.getArenaHandler().getRandomArena();
 		
 		for(Player p : api.getServer().getOnlinePlayers()){
 			PlayerData pd = api.getPlayerHandler().getPlayerData(p.getUniqueId());
 			pd.setTask(this);
+			this.api.getServer().getWorld("world").getWorldBorder().setCenter(arena.getCenter());
+			this.api.getServer().getWorld("world").getWorldBorder().setSize(arena.getStart());
+			this.api.getServer().getWorld("world").getWorldBorder().setDamageAmount(arena.getDamage());
+			p.teleport(this.api.getServer().getWorld("world").getHighestBlockAt(arena.getCenter()).getLocation());
 			pd.sendMessage("Royal", "The game has started.");
 			pd.sendMessage("Royal", "You have &630 &7second's of protection.");
 
@@ -62,15 +72,23 @@ public class GameTask extends BukkitRunnable{
 		}else{
 			if(this.gameTimer.hasReached()){
 				//END GAME//
-			}else{
-				if(this.gameTimer.getLeft() == 240000){
-					for(Player p : api.getServer().getOnlinePlayers()){
-						p.sendMessage("There is 4 minute's left!");
-						api.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&64 &fsecond's left!"));
-					}
-				}
 			}
 		}
+		
+		if(this.borderTimer == null){
+			this.borderTimer = new Timer(60000);
+		}else{
+			if(this.borderTimer.hasReached()){
+				this.api.getServer().getWorld("world").getWorldBorder().setSize(this.api.getServer().getWorld("world").getWorldBorder().getSize() - arena.getBorderDecreaseAmount(), arena.getBorderDecreaseTime());
+				api.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&fPlayable area is &cDecreasing!"));
+				for(Player p : api.getServer().getOnlinePlayers()){
+					p.sendMessage("Playable area is decreasing!");
+				}
+				this.borderTimer = new Timer(60000);
+
+			}
+		}
+		
 		if(this.combatTimer == null){
 			this.combatTimer = new Timer(30000);
 		}else{
