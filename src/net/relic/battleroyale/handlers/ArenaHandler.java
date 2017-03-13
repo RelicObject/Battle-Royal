@@ -1,4 +1,4 @@
-package net.relic.battleroyal.handlers;
+package net.relic.battleroyale.handlers;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import java.util.Random;
 import org.apache.commons.io.FilenameUtils;
 import org.bukkit.ChatColor;
 
-import net.relic.battleroyal.API;
-import net.relic.battleroyal.arena.Arena;
+import net.relic.battleroyale.API;
+import net.relic.battleroyale.arena.Arena;
 
 /**
  * @author Relic

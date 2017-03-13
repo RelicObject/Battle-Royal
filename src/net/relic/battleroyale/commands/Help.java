@@ -1,12 +1,12 @@
-package net.relic.battleroyal.commands;
+package net.relic.battleroyale.commands;
 
 import java.util.UUID;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 
-import net.relic.battleroyal.API;
-import net.relic.battleroyal.player.PlayerData;
+import net.relic.battleroyale.API;
+import net.relic.battleroyale.player.PlayerData;
 
 /**
  * @author Relic
@@ -19,7 +19,7 @@ public class Help extends Command{
 	 * @param perm
 	 */
 	public Help(API api) {
-		super(api, "Help", "View our command's.", "battleroyal.help");
+		super(api, "Help", "This Command.", "battleroyal.help");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -29,9 +29,10 @@ public class Help extends Command{
 		PlayerData pd = getAPI().getPlayerHandler().getPlayerData(sender);
 		if(args.length == 0){
 			pd.clearChat(true);
+			pd.sendMessage("Royale", "Here is a list of our commands.");
 			for(Command c : getAPI().getCommandHandler().getCommands()){
 				if(getAPI().getServer().getPlayer(pd.getUUID()).hasPermission(c.getPermission())){
-					getAPI().getServer().getPlayer(pd.getUUID()).sendMessage(ChatColor.translateAlternateColorCodes('&', "  &a* &7/" + StringUtils.capitalise(c.getInitial()) + " &f- &7" + this.getDesc()));
+					getAPI().getServer().getPlayer(pd.getUUID()).sendMessage(ChatColor.translateAlternateColorCodes('&', " &a* &7/" + StringUtils.capitalise(c.getInitial()) + " &f- &7" + this.getDesc()));
 				}
 			}
 		}

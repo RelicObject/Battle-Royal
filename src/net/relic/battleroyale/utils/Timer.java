@@ -1,4 +1,4 @@
-package net.relic.battleroyal.utils;
+package net.relic.battleroyale.utils;
 
 /**
  * @author Relic

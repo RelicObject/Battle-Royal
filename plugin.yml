@@ -3,5 +3,11 @@
  description: Battle-Royal
  authors: [Relic] 
  
- main: net.relic.battleroyal.battleroyal
+ main: net.relic.battleroyale.battleroyale
  
+ 
+ commands:
+    help:
+        description: help command
+    arena:
+        description: arena command

@@ -1,12 +1,12 @@
-package net.relic.battleroyal.player;
+package net.relic.battleroyale.player;
 
 import java.util.UUID;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
 import net.md_5.bungee.api.ChatColor;
-import net.relic.battleroyal.API;
-import net.relic.battleroyal.tasks.GameTask;
+import net.relic.battleroyale.API;
+import net.relic.battleroyale.tasks.GameTask;
 
 /**
  * @author Relic
@@ -33,11 +33,11 @@ public class PlayerData {
 	}
 	
 	public void clearChat(boolean silent){
-		for(int i = 0; i < 25; i++){
+		for(int i = 0; i < 100; i++){
 			this.api.getServer().getPlayer(uuid).sendMessage("");
 		}
 		if(!silent){
-			this.sendMessage("Royal", "You chat has been cleared.");
+			this.sendMessage("Royale", "You chat has been cleared.");
 
 		}
 	}

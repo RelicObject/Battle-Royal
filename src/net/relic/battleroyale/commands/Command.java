@@ -1,8 +1,8 @@
-package net.relic.battleroyal.commands;
+package net.relic.battleroyale.commands;
 
 import java.util.UUID;
 
-import net.relic.battleroyal.API;
+import net.relic.battleroyale.API;
 
 /**
  * @author Relic
@@ -20,6 +20,7 @@ public abstract class Command {
 		this.api = api;
 		this.initial = initial; 
 		this.permission = perm;
+		this.desc = desc;
 	}
 	
 	public String getDesc(){

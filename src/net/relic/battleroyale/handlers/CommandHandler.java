@@ -1,10 +1,11 @@
-package net.relic.battleroyal.handlers;
+package net.relic.battleroyale.handlers;
 
 import java.util.ArrayList;
 
-import net.relic.battleroyal.API;
-import net.relic.battleroyal.commands.Command;
-import net.relic.battleroyal.commands.Help;
+import net.relic.battleroyale.API;
+import net.relic.battleroyale.commands.Arena;
+import net.relic.battleroyale.commands.Command;
+import net.relic.battleroyale.commands.Help;
 
 /**
  * @author Relic
@@ -16,6 +17,7 @@ public class CommandHandler {
 	
 	public CommandHandler(API api){		
 		commands.add(new Help(api));
+		commands.add(new Arena(api));
 	}
 	
 	public ArrayList<Command> getCommands(){
